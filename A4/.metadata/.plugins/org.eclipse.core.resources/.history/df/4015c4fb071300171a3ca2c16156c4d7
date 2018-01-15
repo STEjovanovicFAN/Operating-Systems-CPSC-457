@@ -1,0 +1,15 @@
+
+public class Driver {   
+	
+	public static void main(String args[]) {
+		//begin the BroadcastSystem
+		(new BroadcastSystem()).start();
+		
+		
+		//these are all the threads that need to run
+		(new Processor("A")).start();
+		(new Processor("B")).start();
+		(new Processor("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC")).start();
+	}
+
+}

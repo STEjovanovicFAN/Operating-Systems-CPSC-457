@@ -1,0 +1,18 @@
+//DSM: this class represents the DSM layer. It has the following methods:
+public class DSM {
+	
+	//amount of threads allowed to run at the same time
+
+/*	
+	//load(x): returns the value of x read from the local memory
+	public load (x){
+		return(x);
+	}
+	
+	//store(x,v): writes v into x in the local memory and broadcasts a message to all other
+	//DSMs to apply the write locally in their replicas
+
+	public void store(x,v){
+		
+	}*/
+}

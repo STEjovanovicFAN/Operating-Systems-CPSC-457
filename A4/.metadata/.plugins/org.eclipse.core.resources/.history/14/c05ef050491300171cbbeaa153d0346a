@@ -1,0 +1,34 @@
+/*
+ * This is the implementation of the broadcasting mechanism between
+ * processors. You may implement this using sockets, but this is not required. It is sufficient to
+ * implement some delays to simulate sending and receiving messages. One BroadcastSystem
+ * object is shared between all BroadcastAgents. The broadcastSystem executes in a separate
+ * thread.
+ */
+public class BroadcastSystem extends Thread{
+	
+	//array with length n(10)
+	public static int array1[] = new int[Processor.n];
+	
+	private BroadcastSystem(){
+		//initalize the array 
+		for(int d = 0; d < 10; d++ ){
+			if(array1[d] == 0){
+				array1[d] = -1;
+			}
+			
+		}
+	}
+	
+	public void run(){
+		
+		while(true){
+
+			//sleep for a bit before looping 
+			try{Thread.sleep(500);}catch(InterruptedException e){System.out.println(e);}
+			
+		}
+				
+	}
+
+}

@@ -1,0 +1,40 @@
+
+public class TokenRingAgent extends Thread {
+	
+	private Token t;
+	
+	//make the token object 
+	public TokenRingAgent(){
+		t = new Token("I AM A FUCKING GOD AMONG YOU PLEBS");
+		
+	}
+	
+	//returns the unique identifier for the token received from the predecessor
+	public void RecieveToken(Token x){
+		
+		t = x;
+		
+		
+	}
+	
+	//this method manages who gets the token next
+	public Token SendToken(){
+		if(t == null){
+			return(null);
+		}
+		else{
+			return(t);
+		}
+		
+	}
+	
+	public void run(){
+		while(true){
+			
+		}
+		
+	}
+	
+}
+
+

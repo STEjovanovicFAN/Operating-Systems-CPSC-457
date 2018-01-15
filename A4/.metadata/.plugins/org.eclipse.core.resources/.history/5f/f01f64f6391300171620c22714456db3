@@ -1,0 +1,35 @@
+//LocalMemory: this class represents the local replica. It has the following methods
+public class LocalMemory {
+	
+	private int array[]; 
+	
+	public LocalMemory(){
+		array = new int[10];
+		
+		for(int d = 0; d < 10; d++ ){
+			if(array[d] == 0){
+				array[d] = -1;
+			}
+			
+		}
+		
+	}
+	
+	//load(x): returns the value of x read from memory
+	public int load (int x){
+		int value = array[x];
+		
+		return(value);
+		
+	}
+
+	//store(x,v): stores the value v of x to memory
+	public void store(int x,String v){
+		
+		//store the value of v into the index x 
+		array[x] = v;
+		
+	}
+	
+}
+

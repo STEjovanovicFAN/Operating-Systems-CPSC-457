@@ -1,0 +1,14 @@
+//this class provides the implementation of the broadcast mechanism needed by DSM. Each agent executes in a separate thread.
+public class BroadcastAgent {
+
+    //send a store
+	public void Broadcast(String message){
+		
+	}
+	
+	//receive a store
+	public void receive(){
+		
+	}
+	
+}

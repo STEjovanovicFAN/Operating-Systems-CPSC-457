@@ -1,0 +1,16 @@
+//represents a token message
+public class Token {
+	private String token = "I AM A GOD YOU FITHY PLEBS(threads)";
+
+	
+	//this will either set the token to null(if the token is taken) 
+	//or it will return token string (
+	public void setToken(String x){
+		token = x;
+	}
+	
+	public String getToken(String x){
+		
+		return token;
+	}
+}

@@ -1,0 +1,53 @@
+
+public class TokenRing extends Thread {
+	
+	private static int id;
+	private static Token t;
+	
+	//make the token object 
+	public TokenRing(){
+		t = new Token("I AM A FUCKING GOD AMONG YOU PLEBS");
+		
+	}
+	
+	//returns the unique identifier for the token received from the predecessor
+	private static synchronized void RecieveToken(Token x){
+		//get the token back
+		t = x;
+				
+	}
+	
+	//this method manages who gets the token next
+	private static synchronized Token SendToken(){
+		if(t == null){
+			return(null);
+		}
+		else{
+			
+			Token x = t;
+			t = null;
+			return(x);
+		}
+		
+	}
+	
+	public void run(){
+		while(true){
+			
+		}
+		
+	}
+	
+	public static Token getToken(){
+		
+		Token x = SendToken();
+		
+		return(x);
+		
+	}
+	
+	public static void retToken(Token x){
+		RecieveToken(x);
+	}
+	
+}

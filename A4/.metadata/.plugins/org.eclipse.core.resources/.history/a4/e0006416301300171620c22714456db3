@@ -1,0 +1,153 @@
+import java.util.concurrent.AbstractExecutorService. *;
+
+// this class represents a processor. Each processor is executed in a separate thread. It has an object of type DSM
+public class Processor extends Thread{
+	
+	private String symbol;
+	public static int n = 10;
+	
+	private DSM dsm;
+	private int victim;
+	
+	private int id;
+	
+	public static boolean currIDCS = false;
+	
+	int turn;
+    boolean flag[] = new boolean[2];
+    int i=0,j=1;
+    //CSC variables
+    int counter=0;// counter for giving processes a upper bound 
+    //int cscVar=13;
+	
+	public Processor(String s, int i){
+		symbol = s;
+		//create a new thread of DSM
+		id = i;
+		
+		dsm = new DSM();
+	}
+	
+	/*
+	public void lock(){
+		For (j=0; j < n-2; j++){ // Loop is repeated N-1 times
+		 Flag[i] = j; // the player writes level j to his personal board
+		 Turn[j] = i; // the player writes his id to the level board. He is the
+		//person who reached that level last
+		 //While there is another process at a higher level and the board at
+		//the current level has the id of i th player on the level board, stay in
+		//the current level
+		 while (there exists a k such that flag[k] >= j and turn[j] == i ) nop;
+		 } // move to the next level in for loop
+	}
+	
+	public void unlock(){ 
+		//the player writes -1 to his personal board.
+		
+		}
+	
+	*/
+		
+	public void lock(int threadID) {
+		
+		
+		
+		int i = threadID;
+		int j = 1 - i;
+		flag[i] = true;
+		victim = i;
+		while (flag[j] && victim == i) {};
+		
+	}
+
+	public void unlock() {
+		
+		int i = ThreadID.get();
+	    flag[i] = false;
+	    
+	}
+
+	
+	public void run(){
+		
+		flag[1] = true;
+		turn = 1;
+		while ( flag[0] == true && turn == 1 ) { Thread.yield(); }
+		try {
+			
+			while(currIDCS == true){
+				Thread.yield();
+			}
+			
+			if(currIDCS == false){
+				currIDCS = true;
+				//lock the thread so one thread in the critical section
+				lock(id);
+				
+			}
+			
+			
+		  // critical section
+			int o = 0;
+			while(o < 6){
+			 System.out.println(symbol);
+			 o++;
+			}
+		}
+		finally {
+		  flag[1] = false;
+		  
+		  
+		  //let other threads go into the critical section 
+		  unlock();
+		  
+		  
+		}
+		
+		
+		
+		/*
+		 try{
+             do{
+                 flag[i]= true;
+                 turn=j;
+                 while(flag[j]&&turn==j);// wait for j to finish
+                 //critical section
+                 System.out.println(symbol);
+               //  cscVar++;
+              //   System.out.println(cscVar);
+                 counter++;
+             //    System.out.println("counter is "+counter+"\n___________");
+                 //
+                 flag[i]= false;
+                 //remainder section
+             }while(counter<3); // 100 is upper bound, to remove infinite looping
+         }
+         catch(Exception ex){
+             ex.printStackTrace();
+         }
+     
+		*/
+		
+		/*
+		//if there is 10 processes (the max amount of processes) running at a time wait until one of them ends
+		while((n-1)< 0){
+			//do nothing until one of the processors are finished 
+			
+		}
+		
+		//if one of the processes ended and freed up space (Where n >0)
+		n = n-1;
+		
+		int i = 3;
+		while(i != 0){
+			
+			System.out.print(symbol);
+			i--;
+		}
+		
+		//n++;*/
+    }
+
+	
+}

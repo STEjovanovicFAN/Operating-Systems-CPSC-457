@@ -1,0 +1,23 @@
+
+public class Driver {   
+	
+	private static int AmountProcessors = 10;
+	
+	public static void main(String args[]) {
+		//begin the BroadcastSystem
+		(new BroadcastSystem()).start();
+		
+		//begin TokenRing and input the amount of processes you will be running  
+		(new TokenRing(AmountProcessors)).start();
+		
+		//these are all the threads that need to run
+		(new Processor("A", 1)).start(); //1
+		(new Processor("B", 2)).start(); //2
+		(new Processor("C", 3)).start(); //3
+
+		
+		//this is used to end the TokenRing thread and terminate program  
+		TokenRing.end();
+	}
+
+}

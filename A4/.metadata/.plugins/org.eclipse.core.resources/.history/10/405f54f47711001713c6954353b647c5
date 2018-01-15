@@ -1,0 +1,5 @@
+//represents a token message
+public class Token {
+	private String token = "I AM A GOD YOU FITHY PLEBS(threads)";
+
+}

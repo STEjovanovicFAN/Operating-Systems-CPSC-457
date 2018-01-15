@@ -1,0 +1,195 @@
+import java.util.concurrent.*;
+
+// this class represents a processor. Each processor is executed in a separate thread. It has an object of type DSM
+public class Processor extends Thread{
+	
+	private String symbol;
+	public static int n = 10;
+	
+	private DSM dsm;
+	private int victim;
+	
+    boolean flag1[] = new boolean[2];
+    
+	private int id;
+	
+	public static boolean currIDCS = false;
+	
+	//public static int turn[] = new int [n]; 
+	//public int flag[] = new int[n];
+	
+	public static int queCount = 0;
+	
+     //flag[] = new boolean[2];
+    int i=0,j=1;
+    //CSC variables
+    int counter=0;// counter for giving processes a upper bound 
+    //int cscVar=13;
+    int turn;
+	
+	public Processor(String s, int i){
+		symbol = s;
+		//create a new thread of DSM
+		id = i;
+		
+		/*
+		for(int d = 0; d < n; d++ ){
+			if(turn[d] == 0){
+				turn[d] = -1;
+			}
+			
+		}/*
+		
+		/*
+		//put the thread into the queue 
+		int x = 0;
+		while(x < 10){
+			//if the spot at 0 is null then put the id of the tread in there  
+			if(turn[x] == 0){
+				turn[x] = id;
+				break;
+			}
+			x++;
+		}*/
+		
+		dsm = new DSM();
+	}
+	
+	/*
+	public void lock(){
+		For (j=0; j < n-2; j++){ // Loop is repeated N-1 times
+		 Flag[i] = j; // the player writes level j to his personal board
+		 Turn[j] = i; // the player writes his id to the level board. He is the
+		//person who reached that level last
+		 //While there is another process at a higher level and the board at
+		//the current level has the id of i th player on the level board, stay in
+		//the current level
+		 while (there exists a k such that flag[k] >= j and turn[j] == i ) nop;
+		 } // move to the next level in for loop
+	}
+	
+	public void unlock(){ 
+		//the player writes -1 to his personal board.
+		
+		}
+	
+	*/
+		
+	public void lock() {
+		
+		currIDCS = true;
+		
+		dsm.update();
+			
+		/*
+		for (j=0; j < n-1; j++){ // Loop is repeated N-1 times
+			int t = dsm.load(j);
+			if(t == -1){
+				dsm.store(j, id);
+				//since we stored at highest possible level we can break out
+				break;
+			}
+			
+		}*/
+	}
+
+	public void unlock() {
+		//the player writes -1 to his personal board.
+		for(int g = 0; g < n-1; g++){
+			int i = dsm.load(g);
+			if(g == id){
+				dsm.store(g, -1);
+			}
+		}
+		
+	   currIDCS = false;
+	    
+	}
+
+	
+	public void run(){
+		//System.out.println(id);
+		//int flag = dsm.load(0);
+		
+		flag1[j]= true;
+        turn=i;
+        while(flag1[i]&&turn==i){
+        	Thread.yield();
+        }
+        /*
+		while (flag == -1 || flag != id ) { 
+			
+			flag = dsm.load(0);
+			Thread.yield();
+		}*/
+		try {
+			//System.out.println(id + "at try");
+
+			while(currIDCS == true){
+				Thread.yield();
+			}
+		
+			//lock the thread so one thread in the critical section
+			lock();
+				
+			
+		  // critical section
+			for (j=0; j <= n-1; j++){ // Loop is repeated N-1 times
+				int t = dsm.load(j);
+				if(t == -1){
+					dsm.store(j, id);
+					//since we stored at highest possible level we can break out
+					break;
+				}
+				
+			}
+			
+			/*
+			int o = 0;
+			while(o < 10){
+			 System.out.println(symbol);
+			 o++;
+			}*/
+		}
+		finally {
+		  flag1[1] = false;
+		  
+		  //exit critical section
+		  unlock();
+		  
+		  //now check if the first queue == the id 
+		  	int t = dsm.load(0);
+			while(currIDCS == true && t == id){
+				t = dsm.load(0);
+				Thread.yield();
+				
+			}
+		
+			//lock the thread so one thread in the critical section
+			lock();
+			
+			//critical section 
+			//so we know that if we get to this point that the thread id == first one in the que
+			System.out.println(symbol);
+			//set the id in the array to be -1
+			int j= dsm.load(0);
+			if(j == id){
+				dsm.store(0, -1);
+					
+			}
+			
+			//now we have an empty spot in 
+
+			
+			
+			//exit the critical section 
+			unlock();
+		}
+			
+			
+			
+		}
+		
+    }
+
+

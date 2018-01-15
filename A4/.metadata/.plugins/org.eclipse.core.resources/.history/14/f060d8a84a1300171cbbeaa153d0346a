@@ -1,0 +1,59 @@
+//DSM: this class represents the DSM layer. It has the following methods:
+public class DSM extends Thread{
+	
+	private LocalMemory LMem;
+	private BroadcastAgent BCA;
+	
+	public DSM(){
+		
+		//create virtual memory for the processor
+		LMem = new LocalMemory();
+		//update();
+		BCA = new BroadcastAgent();
+		
+	}
+	
+	public void run(){
+		
+		while(true){
+			
+			
+		}
+		
+	}
+	
+	//load(x): returns the value of x read from the local memory
+	public int load (int i){
+		
+		//go to local memory and read what's in index i of the array 
+		int id = LMem.load(i);
+		return(id);
+	}
+	
+	//store(x,v): writes v into x in the local memory and broadcasts a message to all other
+	//DSMs to apply the write locally in their replicas
+	public void store(int x,int v){
+		
+		//store into local memory (at index x the value v)
+		LMem.store(x, v);
+		
+		//now contact the BroadcastAgent that the the value has been changed 
+		BCA.Broadcast(x, v);
+		
+	}
+	
+	public void update(){
+		//get the updated array 
+		int a[] = new int[10];
+		a = BCA.receive();
+		
+		//send to local memory array
+		LMem.update(a);
+		
+	}
+	
+	
+	
+}
+
+

@@ -1,0 +1,23 @@
+
+public class Driver {   
+	
+	public static void main(String args[]) {
+		//begin the BroadcastSystem
+		(new BroadcastSystem()).start();
+		
+		
+		//these are all the threads that need to run
+		(new Processor("A")).start(); //1
+		(new Processor("B")).start(); //2
+		(new Processor("C")).start(); //3
+		(new Processor("D")).start(); //4
+		(new Processor("E")).start(); //5
+		(new Processor("F")).start(); //6
+		(new Processor("G")).start(); //7
+		(new Processor("H")).start(); //8
+		(new Processor("I")).start(); //9
+		(new Processor("J")).start(); //10
+
+	}
+
+}

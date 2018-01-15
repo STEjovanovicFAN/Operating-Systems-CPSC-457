@@ -1,0 +1,31 @@
+//DSM: this class represents the DSM layer. It has the following methods:
+public class DSM {
+	
+	private LocalMemory LMem;
+	
+	public DSM(){
+		
+		//create virtual memory for the processor
+		LMem = new LocalMemory();
+		
+		
+	}
+	
+	
+	
+	
+	//load(x): returns the value of x read from the local memory
+	public String load (int i){
+		
+		//go to local memory and read what's in index i of the array 
+		String element = LMem.load(i);
+		return(element);
+	}
+	
+	//store(x,v): writes v into x in the local memory and broadcasts a message to all other
+	//DSMs to apply the write locally in their replicas
+
+	public void store(x,v){
+		
+	}
+}

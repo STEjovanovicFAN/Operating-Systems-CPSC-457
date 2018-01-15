@@ -1,0 +1,27 @@
+
+public class TokenRingAgent {
+	
+	private Token t;
+	
+	//make the token object 
+	public TokenRingAgent(){
+		t = new Token("I AM A FUCKING GOD AMONG YOU PLEBS");
+		
+	}
+	
+	//returns the unique identifier for the token received from the predecessor
+	public void RecieveToken(){
+		
+		 t.getToken();
+		
+		
+	}
+	
+	//this method manages who gets the token next
+	public void SendToken(Token t){
+		
+	}
+	
+}
+
+

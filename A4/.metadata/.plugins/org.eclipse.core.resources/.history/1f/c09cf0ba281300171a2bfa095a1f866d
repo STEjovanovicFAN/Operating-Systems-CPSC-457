@@ -1,0 +1,85 @@
+
+// this class represents a processor. Each processor is executed in a separate thread. It has an object of type DSM
+public class Processor extends Thread{
+	
+	private String symbol;
+	public static int n = 10;
+	
+	private DSM dsm;
+	
+	int turn;
+    boolean flag[] = new boolean[2];
+    int i=0,j=1;
+    //CSC variables
+    int counter=0;// counter for giving processes a upper bound 
+    //int cscVar=13;
+	
+	public Processor(String s){
+		symbol = s;
+		//create a new thread of DSM
+		dsm = new DSM();
+	}
+	
+	public void run(){
+		
+		flag[1] = true;
+		turn = 1;
+		while ( flag[0] == true && turn == 1 ) { Thread.yield(); }
+		try {
+		  // critical section
+			int o = 0;
+			while(o < 1){
+			 System.out.println(symbol);
+			 o++;
+			}
+		}
+		finally {
+		  flag[1] = false;
+		}
+		
+		
+		/*
+		 try{
+             do{
+                 flag[i]= true;
+                 turn=j;
+                 while(flag[j]&&turn==j);// wait for j to finish
+                 //critical section
+                 System.out.println(symbol);
+               //  cscVar++;
+              //   System.out.println(cscVar);
+                 counter++;
+             //    System.out.println("counter is "+counter+"\n___________");
+                 //
+                 flag[i]= false;
+                 //remainder section
+             }while(counter<3); // 100 is upper bound, to remove infinite looping
+         }
+         catch(Exception ex){
+             ex.printStackTrace();
+         }
+     
+		*/
+		
+		/*
+		//if there is 10 processes (the max amount of processes) running at a time wait until one of them ends
+		while((n-1)< 0){
+			//do nothing until one of the processors are finished 
+			
+		}
+		
+		//if one of the processes ended and freed up space (Where n >0)
+		n = n-1;
+		
+		int i = 3;
+		while(i != 0){
+			
+			System.out.print(symbol);
+			i--;
+		}
+		
+		//n++;*/
+    }
+
+	
+}

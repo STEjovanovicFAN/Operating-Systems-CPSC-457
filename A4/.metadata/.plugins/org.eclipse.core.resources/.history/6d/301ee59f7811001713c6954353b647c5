@@ -1,0 +1,27 @@
+
+public class TokenRingAgent {
+	
+	private Token t;
+	
+	//make the token object 
+	public TokenRingAgent(){
+		t = new Token();
+		
+	}
+	
+	//returns the unique identifier for the token received from the predecessor
+	public String RecieveToken(){
+		
+		String check = t.getToken();
+		
+		return check;
+	}
+	
+	//give the token to someone else
+	public void SendToken(Token t){
+		
+	}
+	
+}
+
+
